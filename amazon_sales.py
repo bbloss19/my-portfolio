@@ -12,7 +12,7 @@ df.head()
 df = df.drop_duplicates()
 df
 
-#drop irrelevant columns
+#drop unneeded features
 df.drop(columns=['review_id', 'img_link', 'product_link', 'user_name', 'review_title', 'about_product', 'review_content', 'user_id'], inplace=True)
 df
 
