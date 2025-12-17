@@ -1,24 +1,24 @@
-# Find average revenue per restaurant
+-- Find average revenue per restaurant
 SELECT ROUND(AVG(revenue), 2) AS avg_revenue
 FROM restaurant_revenue
 
-# Find average meal price per restaurant
+-- Find average meal price per restaurant
 SELECT ROUND(AVG(Average_Meal_Price), 2) AS avg_meal_price
 FROM restaurant_revenue
 
-# Find average marketing budget per restaurant
+-- Find average marketing budget per restaurant
 SELECT AVG(Marketing_Budget) AS avg_marketing_budget
 FROM restaurant_revenue
 
-# Find average rating per restaurant
+-- Find average rating per restaurant
 SELECT ROUND(AVG(rating), 1) AS avg_rating
 FROM restaurant_revenue
 
-# Find average service quality score per restaurant
+-- Find average service quality score per restaurant
 SELECT ROUND(AVG(Service_Quality_Score), 1) AS avg_quality_score
 FROM restaurant_revenue
 
-# Find average revenue by seating capacity
+-- Find average revenue by seating capacity
 WITH seating_capacity AS(
 SELECT 
 	seating_capacity, 
@@ -41,7 +41,7 @@ FROM seating_capacity
 GROUP BY seating_capacity_range
 ORDER BY seating_capacity_range
 
-# Find Total Revenue and Percent of Total Revenue by Cuisine Type
+-- Find Total Revenue and Percent of Total Revenue by Cuisine Type
 SELECT Cuisine,
 ROUND(SUM(Revenue), 2) as total_revenue,
 ROUND(SUM(Revenue) * 100 / (SELECT SUM(Revenue) FROM restaurant_revenue), 2) AS pct_total_revenue
@@ -49,7 +49,7 @@ FROM restaurant_revenue
 GROUP BY Cuisine
 ORDER BY pct_total_revenue DESC
 
-# Find Average Revenue and percent of total revenue by Restaurant Location
+-- Find Average Revenue and percent of total revenue by Restaurant Location
 SELECT Location,
 ROUND(SUM(Revenue), 2) as total_revenue,
 ROUND(SUM(Revenue) * 100 / (SELECT SUM(Revenue) FROM restaurant_revenue), 2) AS pct_total_revenue
@@ -57,27 +57,27 @@ FROM restaurant_revenue
 GROUP BY Location
 ORDER BY pct_total_revenue DESC
 
-# Find average rating for each cuisine Type
+-- Find average rating for each cuisine Type
 SELECT Cuisine, ROUND(AVG(rating), 2) AS avg_rating
 FROM restaurant_revenue
 GROUP BY Cuisine
 ORDER by avg_rating DESC
 
-# Find the average meal price for each cuisine Type
+-- Find the average meal price for each cuisine Type
 SELECT Cuisine,
 ROUND(AVG(Average_Meal_Price), 2) AS avg_meal_price
 FROM restaurant_revenue
 GROUP BY Cuisine
 ORDER BY avg_meal_price DESC
 
-# Find the average meal price by restaurant Location
+-- Find the average meal price by restaurant Location
 SELECT Location,
 ROUND(AVG(Average_Meal_Price), 2) AS avg_meal_price
 FROM restaurant_revenue
 GROUP BY Location
 ORDER BY avg_meal_price DESC
 
-# Find the most common cuisine type at each location (downtown, suburban, rural)
+-- Find the most common cuisine type at each location (downtown, suburban, rural)
 WITH cuisine_count AS (
 	SELECT Location, Cuisine,
 	Count(*) AS Cuisine_count,
